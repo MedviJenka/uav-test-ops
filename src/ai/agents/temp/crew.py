@@ -1,18 +1,15 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai.agents.agent_builder.base_agent import BaseAgent
+from ai.config import AgentConfig
 
 
 @CrewBase
-class Temp():
-    """Temp crew"""
-
-    agents: list[BaseAgent]
-    tasks: list[Task]
+class Temp(AgentConfig):
 
     @agent
     def researcher(self) -> Agent:
         return Agent(
+            llm=self.llm,
             config=self.agents_config['researcher'], # type: ignore[index]
             verbose=True
         )

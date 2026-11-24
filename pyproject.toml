@@ -1,0 +1,27 @@
+[project]
+name = "uav"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { email = "medvijenia@icloud.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "allure-pytest>=2.16.2",
+    "crewai>=1.15.44",
+    "crewai-tools>=1.15.44",
+    "fastapi>=0.165.0",
+    "logfire>=6.0.1",
+    "mavsdk>=4.2.1",
+    "pydantic-settings>=2.16.3",
+    "pytest-xdist>=3.8.0",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+uav = "uav:main"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"

@@ -1,0 +1,28 @@
+services:
+
+  px4-sitl:
+    container_name: px4-sitl
+    build:
+      context: ./sim
+      args:
+        PX4_VERSION: v1.17.0
+    image: uav/px4-sitl:v1.17.0
+    env_file:
+      - .env
+    environment:
+      HEADLESS: "1"            # no Gazebo GUI; watch the drone in QGroundControl
+      PX4_TARGET: gz_x500      # e.g. gz_x500, gz_rc_cessna, gz_standard_vtol
+      # PX4_GZ_WORLD: default
+      # PX4_HOME_LAT: "47.397742"
+      # PX4_HOME_LON: "8.545594"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "18570:18570/udp"      # GCS link (clients connecting in)
+      - "14580:14580/udp"      # offboard/API link (clients connecting in)
+    # Keep the pxh> shell alive; use `docker attach px4-sitl` to type commands
+    # (detach with Ctrl+P, Ctrl+Q).
+    stdin_open: true
+    tty: true
+    shm_size: 1gb
+    restart: unless-stopped
