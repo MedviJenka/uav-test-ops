@@ -1,4 +1,4 @@
-env:=['powershell.exe']
+set shell := ['powershell.exe', '-c']
 
 
 build:

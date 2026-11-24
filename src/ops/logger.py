@@ -1,7 +1,5 @@
-from typing import Any
-
 import logfire
-
+from typing import Any
 from settings import Config, LogLevel
 
 
@@ -25,10 +23,12 @@ class Logger:
             console=logfire.ConsoleOptions(min_log_level=Config.LOG_LEVEL),
         )
 
-    def fire(self, message: str, level: LogLevel = 'info', **attributes: Any) -> None:
+    @staticmethod
+    def fire(message: str, level: LogLevel = 'info', **attributes: Any) -> None:
         logfire.log(level, message, attributes=attributes)
 
-    def span(self, message: str, **attributes: Any):
+    @staticmethod
+    def span(message: str, **attributes: Any):
         """Group the logs inside a `with` block, e.g. one flight-check run."""
         return logfire.span(message, **attributes)
 

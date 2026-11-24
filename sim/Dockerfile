@@ -1,7 +1,7 @@
 # PX4 SITL + Gazebo Harmonic, headless.
 # The official px4io/px4-dev image is built with --no-sim-tools (no Gazebo),
 # so this image runs PX4's own setup script with simulation tools included.
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 ARG PX4_VERSION=v1.17.0
 
@@ -12,12 +12,12 @@ ENV DEBIAN_FRONTEND=noninteractive \
     RUNS_IN_DOCKER=true
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends git sudo ca-certificates lsb-release \
- && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y --no-install-recommends git sudo ca-certificates lsb-release \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN git clone --depth 1 --branch ${PX4_VERSION} --recursive \
-        https://github.com/PX4/PX4-Autopilot.git /px4 \
- && git config --global --add safe.directory '*'
+  https://github.com/PX4/PX4-Autopilot.git /px4 \
+  && git config --global --add safe.directory '*'
 
 WORKDIR /px4
 
@@ -40,6 +40,7 @@ RUN make px4_sitl
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
+
 
 # MAVLink: GCS / offboard local ports (for clients that connect in)
 EXPOSE 18570/udp 14580/udp

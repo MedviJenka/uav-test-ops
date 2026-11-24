@@ -1,4 +1,5 @@
-"""Read-only connection check against the PX4 SITL container.
+"""
+Read-only connection check against the PX4 SITL container.
 
 Listens for MAVLink on UDP 14540 (PX4 sends there), finds the autopilot,
 and prints a few telemetry values. It never arms or moves the vehicle.
@@ -7,12 +8,10 @@ Run from the project root:  uv run python -m scripts.connect_check
 """
 
 import asyncio
-from typing import Any, Optional
-
-from mavsdk.asyncio import ComponentType, Configuration, Mavsdk
-from mavsdk.asyncio.plugins.telemetry import TelemetryAsync
-
 from src.ops.logger import log
+from typing import Any, Optional
+from mavsdk.asyncio.plugins.telemetry import TelemetryAsync
+from mavsdk.asyncio import ComponentType, Configuration, Mavsdk
 
 
 CONNECTION_URL = "udpin://0.0.0.0:14540"  # listen on all interfaces, port 14540
