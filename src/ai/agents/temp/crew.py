@@ -10,27 +10,27 @@ class Temp(AgentConfig):
     def researcher(self) -> Agent:
         return Agent(
             llm=self.llm,
-            config=self.agents_config['researcher'], # type: ignore[index]
+            config=self.agents_config['researcher'],
             verbose=True
         )
 
     @agent
     def reporting_analyst(self) -> Agent:
         return Agent(
-            config=self.agents_config['reporting_analyst'], # type: ignore[index]
+            config=self.agents_config['reporting_analyst'],
             verbose=True
         )
 
     @task
     def research_task(self) -> Task:
         return Task(
-            config=self.tasks_config['research_task'], # type: ignore[index]
+            config=self.tasks_config['research_task'],
         )
 
     @task
     def reporting_task(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_task'], # type: ignore[index]
+            config=self.tasks_config['reporting_task'],
             output_file='report.md'
         )
 

@@ -10,7 +10,7 @@ services:
     env_file:
       - .env
     environment:
-      HEADLESS: "1"            # no Gazebo GUI; watch the drone in QGroundControl
+      HEADLESS: "0"            # no Gazebo GUI; watch the drone in QGroundControl
       PX4_TARGET: gz_x500      # e.g. gz_x500, gz_rc_cessna, gz_standard_vtol
       # PX4_GZ_WORLD: default
       # PX4_HOME_LAT: "47.397742"

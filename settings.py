@@ -14,7 +14,7 @@ class __Config(BaseSettings):
     LOGFIRE_SERVICE_NAME: str       = Field(default='uav')
     LOGFIRE_ENVIRONMENT:  str       = Field(default='dev')
     LOG_LEVEL:            LogLevel  = Field(default='info')
-    OPENAI_API_KEY:       SecretStr = Field(...)
+    OPENAI_API_KEY:       SecretStr = Field(default='')
     OPENAI_MODEL:         str       = Field(default='gpt-5.5')
 
 
